@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from '../utils/shared/component/Logo'
 import LogoIcon from '../utils/shared/component/LogoIcon'
+import { Link } from 'react-router-dom'
 
 export default function Navbar() {
   return (
@@ -8,12 +9,12 @@ export default function Navbar() {
         <Logo/>
         <LogoIcon/>
         <div className="nav-right">
-            <button className='login_btn'>
+            <Link to="/login" className='btn login_btn'>
                 LOG IN
-            </button>
-            <button className='signup_btn'>
+            </Link>
+            <Link to="/signup" className='btn signup_btn'>
                 SIGN UP
-            </button>
+            </Link>
         </div>
     </div>
   )
