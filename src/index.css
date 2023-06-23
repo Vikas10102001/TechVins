@@ -5,12 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+  color: #777;
 }
 
 #root{
-  margin: 30px;
+  margin: 20px;
   background-color: #f7f7f7;
+  min-height: 100vh;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
