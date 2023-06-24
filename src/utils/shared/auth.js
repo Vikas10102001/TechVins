@@ -19,6 +19,7 @@ export const authFunction = (authType, values) => {
       store.dispatch(
         alertSlice.actions.setAlert({ type: "error", content: "error" }) //not working
       );
+      return 0;
     } else if (!error) {
       localStorage.setItem("auth", 1);
       store.dispatch(
@@ -29,6 +30,7 @@ export const authFunction = (authType, values) => {
         })
       );
       window.location.pathname = "/";
+      return 1;
     }
   } catch (err) {
     console.log(err);
@@ -38,6 +40,7 @@ export const authFunction = (authType, values) => {
         content: err?.message ? err.message : "Something went wrong",
       })
     );
+    return 0;
   }
 };
 

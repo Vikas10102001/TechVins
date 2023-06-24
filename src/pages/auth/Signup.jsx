@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppLayout from "../../component/AppLayout";
 import AuthWrapper from "../../component/AuthWrapper";
 import { useFormik } from "formik";
@@ -7,6 +7,7 @@ import InputBlock from "../../component/InputBlock";
 import { authFunction } from "../../utils/shared/auth";
 
 export default function Signup() {
+  const [disabled, setDisabled] = useState(false);
   const initialValues = {
     name: "",
     email: "",
@@ -19,12 +20,14 @@ export default function Signup() {
       validationSchema: signupSchema,
       validateOnChange: true,
       validateOnBlur: true,
-      //// By disabling validation onChange and onBlur formik will validate on submit.
+      // By disabling validation onChange and onBlur formik will validate on submit.
       onSubmit: (values, action) => {
         console.log(values);
-        authFunction("SIGNUP", values);
-        //// to get rid of all the values after submitting the form
-        action.resetForm();
+        setDisabled(true); //disabling button while waiting for response
+        const success = authFunction("SIGNUP", values);//will return 1 if no error 
+        // to get rid of all the values after submitting the form
+        if (success) action.resetForm(); 
+        setDisabled(false);
       },
     });
   return (
@@ -83,7 +86,7 @@ export default function Signup() {
             onBlur={handleBlur}
             placeholder="••••••••"
           />
-          <button className="input-button" type="submit">
+          <button className="input-button" type="submit" disabled={disabled}>
             Sign up
           </button>
         </form>

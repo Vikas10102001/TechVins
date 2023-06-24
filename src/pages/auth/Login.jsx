@@ -5,8 +5,10 @@ import { loginSchema } from "../../schemas";
 import { useFormik } from "formik";
 import InputBlock from "../../component/InputBlock";
 import { authFunction } from "../../utils/shared/auth";
+import { useState } from "react";
 
 export default function Login() {
+  const [disabled, setDisabled] = useState(false);
   const initialValues = {
     email: "",
     password: "",
@@ -19,10 +21,14 @@ export default function Login() {
       validateOnBlur: true,
       //// By disabling validation onChange and onBlur formik will validate on submit.
       onSubmit: (values, action) => {
-        console.log(values);
+        setDisabled(true); //disabling button while waiting for response
+        console.log(values);//will return 1 if no error 
         //// to get rid of all the values after submitting the form
-        authFunction("LOGIN",values)
+        const success=authFunction("LOGIN", values);
+        if(success)
         action.resetForm();
+        
+        setDisabled(false);
       },
     });
   return (
@@ -40,7 +46,7 @@ export default function Login() {
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
-            placeholder='example@gmail.com'
+            placeholder="example@gmail.com"
           />
           <InputBlock
             label="Password"
@@ -55,7 +61,7 @@ export default function Login() {
             onBlur={handleBlur}
             placeholder="••••••••"
           />
-          <button className="input-button" type="submit">
+          <button className="input-button" type="submit" disabled={disabled}>
             Login
           </button>
         </form>
