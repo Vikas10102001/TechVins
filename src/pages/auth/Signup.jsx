@@ -4,6 +4,7 @@ import AuthWrapper from "../../component/AuthWrapper";
 import { useFormik } from "formik";
 import { signupSchema } from "../../schemas";
 import InputBlock from "../../component/InputBlock";
+import { authFunction } from "../../utils/shared/auth";
 
 export default function Signup() {
   const initialValues = {
@@ -21,6 +22,7 @@ export default function Signup() {
       //// By disabling validation onChange and onBlur formik will validate on submit.
       onSubmit: (values, action) => {
         console.log(values);
+        authFunction("SIGNUP", values);
         //// to get rid of all the values after submitting the form
         action.resetForm();
       },

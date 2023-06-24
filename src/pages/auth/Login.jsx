@@ -4,6 +4,7 @@ import AuthWrapper from "../../component/AuthWrapper";
 import { loginSchema } from "../../schemas";
 import { useFormik } from "formik";
 import InputBlock from "../../component/InputBlock";
+import { authFunction } from "../../utils/shared/auth";
 
 export default function Login() {
   const initialValues = {
@@ -20,12 +21,13 @@ export default function Login() {
       onSubmit: (values, action) => {
         console.log(values);
         //// to get rid of all the values after submitting the form
+        authFunction("LOGIN",values)
         action.resetForm();
       },
     });
   return (
     <AppLayout>
-      <AuthWrapper title="Create your account!">
+      <AuthWrapper title="Log into your account!">
         <form onSubmit={handleSubmit}>
           <InputBlock
             label="Email"
@@ -33,31 +35,24 @@ export default function Login() {
             error={errors.email}
             type="email"
             autoComplete="off"
-            name='email'
-            id='email'
+            name="email"
+            id="email"
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
           />
-
-          <div className="input-block">
-            <label htmlFor="password" className="input-label">
-              Password
-            </label>
-            <input
-              className={errors.password && touched.password && "invalid-input"}
-              type="password"
-              autoComplete="off"
-              name="password"
-              id="password"
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            {errors.password && touched.password ? (
-              <p className="form-error">{errors.password}</p>
-            ) : null}
-          </div>
+          <InputBlock
+            label="Password"
+            hasError={errors.password && touched.password}
+            error={errors.password}
+            type="password"
+            autoComplete="off"
+            name="password"
+            id="password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
           <button className="input-button" type="submit">
             Login
           </button>
