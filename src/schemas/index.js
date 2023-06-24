@@ -3,7 +3,12 @@ import * as Yup from "yup";
 export const signupSchema = Yup.object({
   name: Yup.string().min(3).max(30).required("Please enter your name"),
   email: Yup.string().email().required("Please enter your email"),
-  password: Yup.string().min(8).required("Please enter your password"),
+  password: Yup.string()
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/,
+      "Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be at least 8 characters long"
+    )
+    .required("Password is required"),
   confirm_password: Yup.string()
     .required()
     .oneOf([Yup.ref("password"), null], "Password must match"),
@@ -11,5 +16,8 @@ export const signupSchema = Yup.object({
 
 export const loginSchema = Yup.object({
   email: Yup.string().email().required("Please enter your email"),
-  password: Yup.string().min(8).required("Please enter your password"),
+  password: Yup.string().matches(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/,
+    "Password must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be at least 8 characters long"
+  ),
 });
