@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import alertSlice from "../../../store/slice/alert";
 import { useDispatch } from "react-redux";
 
-export default function Alert({ type, content }) {
+export default function Alert({ data}) {
   const [visible, setVisible] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,6 +14,6 @@ export default function Alert({ type, content }) {
     return () => {
       clearTimeout(timer);
     };
-  }, []);
-  return visible ? <div className={`alert alert_${type}`}>{content}</div> : null;
+  }, [dispatch]);
+  return visible ? <div className={`alert alert_${data.type}`}>{data.content}</div> : null;
 }
