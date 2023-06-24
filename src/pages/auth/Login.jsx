@@ -40,6 +40,7 @@ export default function Login() {
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
+            placeholder='example@gmail.com'
           />
           <InputBlock
             label="Password"
@@ -52,6 +53,7 @@ export default function Login() {
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
+            placeholder="••••••••"
           />
           <button className="input-button" type="submit">
             Login

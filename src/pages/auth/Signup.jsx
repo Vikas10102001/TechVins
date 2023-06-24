@@ -42,6 +42,7 @@ export default function Signup() {
             value={values.name}
             onChange={handleChange}
             onBlur={handleBlur}
+            placeholder="your name"
           />
           <InputBlock
             label="Email"
@@ -54,6 +55,7 @@ export default function Signup() {
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
+            placeholder="example@gmail.com"
           />
           <InputBlock
             label="Password"
@@ -66,6 +68,7 @@ export default function Signup() {
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
+            placeholder="Example@123"
           />
           <InputBlock
             label="Confirm Password"
@@ -78,6 +81,7 @@ export default function Signup() {
             value={values.confirm_password}
             onChange={handleChange}
             onBlur={handleBlur}
+            placeholder="••••••••"
           />
           <button className="input-button" type="submit">
             Sign up

@@ -11,6 +11,7 @@ export default function InputBlock({
   onBlur,
   hasError,
   error,
+  placeholder
 }) {
   return (
     <div className="input-block">
@@ -26,6 +27,7 @@ export default function InputBlock({
         value={value}
         onChange={onChange}
         onBlur={onBlur}
+        placeholder={placeholder}
       />
       {hasError ? <p className="form-error">{error}</p> : null}
     </div>
