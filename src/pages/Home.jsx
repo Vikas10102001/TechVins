@@ -1,8 +1,12 @@
 import React from 'react'
-import AppLayout from '../utils/shared/component/AppLayout'
+import AppLayout from '../component/AppLayout'
 
 export default function Home() {
   return (
-    <AppLayout>Home</AppLayout>
+    <AppLayout>
+      <h1 className='home'>
+        Hello! Welcome Back     
+      </h1>
+    </AppLayout>
   )
 }
