@@ -48,8 +48,10 @@
 .navbar .login_btn:hover{
   font-size: 17px;
 }
+.logo:hover{
+  font-size: 21px;
+}
 .logo:hover,.navbar a.btn:hover {
-  transform: translateY(-2px);
     box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
 }
 
@@ -121,4 +123,11 @@
 }
 .auth-container button:hover{
     transform: translateY(-2px);
+}
+
+/*Home*/
+.home{
+  text-align: center;
+  position: relative;
+  top:5rem
 }
