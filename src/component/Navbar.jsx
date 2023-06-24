@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 export default function Navbar() {
   return (
     <div className='navbar'>
-        <Logo/>
+        <Link to="/"><Logo/></Link>
         <LogoIcon/>
         <div className="nav-right">
             <Link to="/login" className='btn login_btn'>
