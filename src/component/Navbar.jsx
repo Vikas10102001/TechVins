@@ -7,9 +7,9 @@ import { signout } from "../utils/shared/auth";
 
 export default function Navbar() {
   const authData = useSelector((state) => {
+    //authData from store can be used for conditionally rendering nav buttons
     return state.auth.authData;
   });
-  console.log(authData)
   return (
     <div className="navbar">
       <Link to="/">
@@ -17,19 +17,25 @@ export default function Navbar() {
       </Link>
       <LogoIcon />
       <div className="nav-right">
-        {
-        authData?
-        <button className="btn logout_btn" onClick={()=>{signout()}}>Log out</button>
-        :
-        <>
-        <Link to="/login" className="btn login_btn">
-          LOG IN
-        </Link>
-        <Link to="/signup" className="btn signup_btn">
-          SIGN UP
-        </Link>
-        </>
-      }
+        {authData ? (
+          <button
+            className="btn logout_btn"
+            onClick={() => {
+              signout();
+            }}
+          >
+            Log out
+          </button>
+        ) : (
+          <>
+            <Link to="/login" className="btn login_btn">
+              LOG IN
+            </Link>
+            <Link to="/signup" className="btn signup_btn">
+              SIGN UP
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );

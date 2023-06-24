@@ -10,7 +10,7 @@ function App() {
   const alertData = useSelector((state) => {
     return state.alert.data;
   });
-  console.log(alertData);
+  
   return (
     <>
       <Routes>

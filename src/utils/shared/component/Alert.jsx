@@ -5,6 +5,8 @@ import { useDispatch } from "react-redux";
 export default function Alert({ data}) {
   const [visible, setVisible] = useState(true);
   const dispatch = useDispatch();
+
+  //displaying alert only for 5 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       setVisible(false);

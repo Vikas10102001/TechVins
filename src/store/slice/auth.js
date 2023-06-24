@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//auth related data could be useful like in conditionally rendering nav buttons
 const authSlice = createSlice({
   name: "auth",
   initialState: {
