@@ -16,13 +16,9 @@ export default function Login() {
               autoComplete="off"
               name="email"
               id="email"
-              // value={values.email}
-              // onChange={handleChange}
-              // onBlur={handleBlur}
+              
             />
-            {/* {errors.email && touched.email ? (
-              <p className="form-error">{errors.email}</p>
-            ) : null} */}
+            
           </div>
           <div className="input-block">
             <label htmlFor="password" className="input-label">
@@ -33,13 +29,9 @@ export default function Login() {
               autoComplete="off"
               name="password"
               id="password"
-              // value={values.password}
-              // onChange={handleChange}
-              // onBlur={handleBlur}
+              
             />
-            {/* {errors.password && touched.password ? (
-              <p className="form-error">{errors.password}</p>
-            ) : null} */}
+        
           </div>
             <button className="input-button" type="submit">
               Login
