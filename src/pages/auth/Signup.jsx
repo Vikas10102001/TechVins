@@ -1,63 +1,85 @@
 import React from "react";
 import AppLayout from "../../component/AppLayout";
 import AuthWrapper from "../../component/AuthWrapper";
+import { useFormik } from "formik";
+import { signupSchema } from "../../schemas";
+import InputBlock from "../../component/InputBlock";
 
 export default function Signup() {
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+  };
+  const { values, handleBlur, handleChange, handleSubmit, errors, touched } =
+    useFormik({
+      initialValues,
+      validationSchema: signupSchema,
+      validateOnChange: true,
+      validateOnBlur: true,
+      //// By disabling validation onChange and onBlur formik will validate on submit.
+      onSubmit: (values, action) => {
+        console.log(values);
+        //// to get rid of all the values after submitting the form
+        action.resetForm();
+      },
+    });
   return (
     <AppLayout>
       <AuthWrapper title="Create your account!">
-        <form>
-          <div className="input-block">
-            <label htmlFor="name" className="input-label">
-              Name
-            </label>
-            <input
-              type="name"
-              autoComplete="off"
-              name="name"
-              id="name"
-            
-            />
-          </div>
-          <div className="input-block">
-            <label htmlFor="email" className="input-label">
-              Email
-            </label>
-            <input
-              type="email"
-              autoComplete="off"
-              name="email"
-              id="email"
-      
-            />
-            
-          </div>
-          <div className="input-block">
-            <label htmlFor="password" className="input-label">
-              Password
-            </label>
-            <input
-              type="password"
-              autoComplete="off"
-              name="password"
-              id="password"
-            />
-           
-          </div>
-          <div className="input-block">
-            <label htmlFor="confirm_password" className="input-label">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              autoComplete="off"
-              name="confirm_password"
-              id="confirm_password"
-            />
-          </div>
-            <button className="input-button" type="submit">
-              Sign up
-            </button>
+        <form onSubmit={handleSubmit}>
+          <InputBlock
+            label="Name"
+            hasError={errors.name && touched.name}
+            error={errors.name}
+            type="text"
+            autoComplete="off"
+            name="name"
+            id="name"
+            value={values.name}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <InputBlock
+            label="Email"
+            hasError={errors.email && touched.email}
+            error={errors.email}
+            type="email"
+            autoComplete="off"
+            name="email"
+            id="email"
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <InputBlock
+            label="Password"
+            hasError={errors.password && touched.password}
+            error={errors.password}
+            type="password"
+            autoComplete="off"
+            name="password"
+            id="password"
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <InputBlock
+            label="Confirm Password"
+            hasError={errors.confirm_password && touched.confirm_password}
+            error={errors.confirm_password}
+            type="password"
+            autoComplete="off"
+            name="confirm_password"
+            id="confirm_password"
+            value={values.confirm_password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <button className="input-button" type="submit">
+            Sign up
+          </button>
         </form>
       </AuthWrapper>
     </AppLayout>
